@@ -1,0 +1,6 @@
+pyproject.toml
+basic_rag_api.egg-info/PKG-INFO
+basic_rag_api.egg-info/SOURCES.txt
+basic_rag_api.egg-info/dependency_links.txt
+basic_rag_api.egg-info/requires.txt
+basic_rag_api.egg-info/top_level.txt
