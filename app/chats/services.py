@@ -8,6 +8,7 @@ from app.chats.models import BaseMessage, Message
 from app.chats.retrieval import process_retrieval
 from app.chats.streaming import format_to_event_stream, stream_generator
 from app.core.logs import logger
+from app.db import messages_queries
 from settings import settings
 
 
@@ -17,14 +18,20 @@ class OpenAIService:
         completion: openai.ChatCompletion = await openai.ChatCompletion.acreate(
             model=input_message.model,
             api_key=settings.OPENAI_API_KEY,
-            messages=[{"role": ChatRolesEnum.USER.value, "content": input_message.message}],
+            messages=[
+                {"role": ChatRolesEnum.USER.value, "content": input_message.message}
+            ],
         )
         logger.info(f"Got the following response: {completion}")
-        return Message(
+        message = Message(
             model=input_message.model,
             message=cls.extract_response_from_completion(completion),
-            role=ChatRolesEnum.ASSISTANT.value
+            role=ChatRolesEnum.ASSISTANT.value,
         )
+        messages_queries.insert(
+            model=message.model, message=message.message, role=message.role
+        )
+        return message
 
     @staticmethod
     async def chat_completion_with_streaming(input_message: BaseMessage) -> StreamingResponse:
