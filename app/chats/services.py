@@ -2,8 +2,10 @@ import openai
 from openai import ChatCompletion
 from starlette.responses import StreamingResponse
 
-from app.chats.constants import ChatRolesEnum
+from app.chats.constants import ChatRolesEnum, NO_DOCUMENTS_FOUND
+from app.chats.exceptions import RetrievalNoDocumentsFoundException
 from app.chats.models import BaseMessage, Message
+from app.chats.retrieval import process_retrieval
 from app.chats.streaming import format_to_event_stream, stream_generator
 from app.core.logs import logger
 from settings import settings
@@ -37,3 +39,11 @@ class OpenAIService:
     @staticmethod
     def extract_response_from_completion(chat_completion: ChatCompletion) -> str:
         return chat_completion.choices[0]["message"]["content"]
+    
+    @classmethod
+    async def qa_without_stream(cls, input_message: BaseMessage) -> Message:
+        try:
+            augmented_message: BaseMessage = process_retrieval(message=input_message)
+            return await cls.chat_completion_without_streaming(input_message=augmented_message)
+        except RetrievalNoDocumentsFoundException:
+            return Message(model=input_message.model, message=NO_DOCUMENTS_FOUND, role=ChatRolesEnum.ASSISTANT.value)

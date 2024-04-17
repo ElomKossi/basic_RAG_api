@@ -26,3 +26,10 @@ async def completion_stream(input_message: BaseMessage) -> StreamingResponse:
         return await OpenAIService.chat_completion_with_streaming(input_message=input_message)
     except openai.OpenAIError:
         raise OpenAIException
+    
+@router.post("/v1/qa-create")
+async def qa_create(input_message: BaseMessage) -> Message:
+    try:
+        return await OpenAIService.qa_without_stream(input_message=input_message)
+    except openai.OpenAIError:
+        raise OpenAIException
