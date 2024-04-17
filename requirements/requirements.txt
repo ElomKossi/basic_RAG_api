@@ -12,9 +12,15 @@ anyio==4.3.0 \
     --hash=sha256:048e05d0f6caeed70d731f3db756d35dcc1f35747c8c403364a8332c630441b8 \
     --hash=sha256:f75253795a87df48568485fd18cdd2a3fa5c4f7c5be8e5e36637733fce06fed6
     # via
+    #   fast-depends
+    #   faststream
     #   httpx
     #   openai
     #   starlette
+async-timeout==4.0.3 \
+    --hash=sha256:4640d96be84d82d02ed59ea2b7105a0f7b33abe8703703cd0ab0bf87c427522f \
+    --hash=sha256:7405140ff1230c310e51dc27b3145b9092d659ce68ff733fb0cefe3ee42be028
+    # via basic_rag_api (pyproject.toml)
 certifi==2024.2.2 \
     --hash=sha256:0569859f95fc761b18b45ef421b1290a0f65f147e92a1e5eb3e635f9a5e4e66f \
     --hash=sha256:dc383c07b76109f368f6106eee2b593b04a011ea4d55f652c6ca24a754d1cdd1
@@ -118,7 +124,9 @@ charset-normalizer==3.3.2 \
 click==8.1.7 \
     --hash=sha256:ae74fb96c20a0277a1d615f1e4d73c8414f5a98db8b799a7931d1582f3390c28 \
     --hash=sha256:ca9853ad459e787e2192211578cc907e7594e294c7ccc834310722b41b9ca6de
-    # via uvicorn
+    # via
+    #   typer
+    #   uvicorn
 coloredlogs==15.0.1 \
     --hash=sha256:612ee75c546f53e92e70049c9dbfcc18c935a2b9a53b66085ce9ef6a6e5c0934 \
     --hash=sha256:7c991aa71a4577af2f82600d8f8f3a89f936baeaf9b50a9c197da014e5bf16b0
@@ -131,6 +139,10 @@ exceptiongroup==1.2.0 \
     --hash=sha256:4bfd3996ac73b41e9b9628b04e079f193850720ea5945fc96a08633c66912f14 \
     --hash=sha256:91f5c769735f051a4290d52edd0858999b57e5876e9f85937691bd4c9fa3ed68
     # via anyio
+fast-depends==2.4.2 \
+    --hash=sha256:1b154d9d2e4bd0de28d18ee5d0bf06637785b6cb3e362586f372da125ba5f153 \
+    --hash=sha256:faf8961ae8854dbf43d7cb82217771a9a224c05c67ccfcdc5e04c2e364098000
+    # via faststream
 fastapi==0.110.1 \
     --hash=sha256:5df913203c482f820d31f48e635e022f8cbfe7350e4830ef05a3163925b1addc \
     --hash=sha256:6feac43ec359dfe4f45b2c18ec8c94edb8dc2dfc461d417d9e626590c071baad
@@ -139,6 +151,10 @@ fastembed==0.2.5 \
     --hash=sha256:42911336653b3b7d33792d4fef1e8d6404314b429454364548def38cacc3f4a3 \
     --hash=sha256:b468ec4c7a26f73c4d7d18f398756580d6761c11cf3987a5f9677714aa70a70d
     # via qdrant-client
+faststream[nats]==0.5.0 \
+    --hash=sha256:8066ddb2a162570f9a3653ef938543017e31c31cdf507e7aae31af3dc6695a73 \
+    --hash=sha256:9be0126cca3889b52deb0d92c4ca967cc218e233b7c40361e004f53ee9d61cc4
+    # via basic_rag_api (pyproject.toml)
 filelock==3.13.3 \
     --hash=sha256:5ffa845303983e7a0b7ae17636509bc97997d58afeafa72fb141a17b152284cb \
     --hash=sha256:a79895a25bbefdf55d1a2a0a80968f7dbb28edcd6d4234a0afb3f37ecde4b546
@@ -318,10 +334,21 @@ loguru==0.7.2 \
     --hash=sha256:003d71e3d3ed35f0f8984898359d65b79e5b21943f78af86aa5491210429b8eb \
     --hash=sha256:e671a53522515f34fd406340ee968cb9ecafbc4b36c679da03c18fd8d0bd51ac
     # via fastembed
+markdown-it-py==3.0.0 \
+    --hash=sha256:355216845c60bd96232cd8d8c40e8f9765cc86f46880e43a8fd22dc1a1a8cab1 \
+    --hash=sha256:e3f60a94fa066dc52ec76661e37c851cb232d92f9886b15cb560aaada2df8feb
+    # via rich
+mdurl==0.1.2 \
+    --hash=sha256:84008a41e51615a49fc9966191ff91509e3c40b939176e643fd50a5c2196b8f8 \
+    --hash=sha256:bb413d29f5eea38f31dd4754dd7377d4465116fb207585f97bf925588687c1ba
+    # via markdown-it-py
 mpmath==1.3.0 \
     --hash=sha256:7a28eb2a9774d00c7bc92411c19a89209d5da7c4c9a9e227be8330a23a25b91f \
     --hash=sha256:a0b2b9fe80bbcd81a6647ff13108738cfb482d481d826cc0e02f5b35e5c88d2c
     # via sympy
+nats-py==2.7.2 \
+    --hash=sha256:0c97b4a57bed0ef1ff9ae6c19bc115ec7ca8ede5ab3e001fd00a377056a547cf
+    # via faststream
 numpy==1.26.4 \
     --hash=sha256:03a8c78d01d9781b28a6989f6fa1bb2c4f2d51201cf99d3dd875df6fbd96b23b \
     --hash=sha256:08beddf13648eb95f8d867350f6a018a4be2e5ad54c8d8caed89ebca558b2818 \
@@ -537,6 +564,7 @@ pydantic==2.6.4 \
     --hash=sha256:b1704e0847db01817624a6b86766967f552dd9dbf3afba4004409f908dcc84e6 \
     --hash=sha256:cc46fce86607580867bdc3361ad462bab9c222ef042d3da86f2fb333e1d916c5
     # via
+    #   fast-depends
     #   fastapi
     #   openai
     #   pydantic-settings
@@ -626,6 +654,10 @@ pydantic-settings==2.2.1 \
     --hash=sha256:00b9f6a5e95553590434c0fa01ead0b216c3e10bc54ae02e37f359948643c5ed \
     --hash=sha256:0235391d26db4d2190cb9b31051c4b46882d28a51533f97440867f012d4da091
     # via basic_rag_api (pyproject.toml)
+pygments==2.17.2 \
+    --hash=sha256:b27c2826c47d0f3219f29554824c30c5e8945175d888647acd804ddd04af846c \
+    --hash=sha256:da46cec9fd2de5be3a8a784f434e4c4ab670b4ff54d605c4c2717e9d49c4c367
+    # via rich
 python-dotenv==1.0.1 \
     --hash=sha256:e324ee90a023d808f1959c46bcbc04446a10ced277783dc6ee09987c37ec10ca \
     --hash=sha256:f7b63ef50f1b690dddf550d03497b66d609393b40b564ed0d674909a68ebf16a
@@ -693,10 +725,18 @@ requests==2.31.0 \
     # via
     #   fastembed
     #   huggingface-hub
+rich==13.7.1 \
+    --hash=sha256:4edbae314f59eb482f54e9e30bf00d33350aaa94f4bfcd4e9e3110e64d0d7222 \
+    --hash=sha256:9be308cb1fe2f1f57d67ce99e95af38a1e2bc71ad9813b0e247cf7ffbcc3a432
+    # via typer
 sentry-sdk==1.44.1 \
     --hash=sha256:24e6a53eeabffd2f95d952aa35ca52f0f4201d17f820ac9d3ff7244c665aaf68 \
     --hash=sha256:5f75eb91d8ab6037c754a87b8501cc581b2827e923682f593bed3539ce5b3999
     # via basic_rag_api (pyproject.toml)
+shellingham==1.5.4 \
+    --hash=sha256:7ecfff8f2fd72616f7481040475a65b2bf8af90a56c89140852d1120324e8686 \
+    --hash=sha256:8dbca0739d487e5bd35ab3ca4b36e11c4078f3a234bfce294b0a0291363404de
+    # via typer
 sniffio==1.3.1 \
     --hash=sha256:2f6da418d1f1e0fddd844478f41680e794e6051915791a034ff65e5f100525a2 \
     --hash=sha256:f4324edc670a0f49750a81b895f35c3adb843cca46f0530f79fc1babb23789dc
@@ -879,17 +919,23 @@ tqdm==4.66.2 \
     #   fastembed
     #   huggingface-hub
     #   openai
+typer==0.12.3 \
+    --hash=sha256:070d7ca53f785acbccba8e7d28b08dcd88f79f1fbda035ade0aecec71ca5c914 \
+    --hash=sha256:49e73131481d804288ef62598d97a1ceef3058905aa536a1134f90891ba35482
+    # via faststream
 typing-extensions==4.11.0 \
     --hash=sha256:83f085bd5ca59c80295fc2a82ab5dac679cbe02b9f33f7d83af68e241bea51b0 \
     --hash=sha256:c1f94d72897edaf4ce775bb7558d5b79d8126906a14ea5ed1635921406c0387a
     # via
     #   anyio
     #   fastapi
+    #   faststream
     #   huggingface-hub
     #   openai
     #   pydantic
     #   pydantic-core
     #   starlette
+    #   typer
     #   uvicorn
 urllib3==2.2.1 \
     --hash=sha256:450b20ec296a467077128bff42b73080516e71b56ff59a60a02bef2232c4fa9d \

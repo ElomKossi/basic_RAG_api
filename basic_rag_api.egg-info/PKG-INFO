@@ -11,6 +11,8 @@ Requires-Dist: qdrant-client[fastembed]
 Requires-Dist: sentry-sdk
 Requires-Dist: pugsql
 Requires-Dist: psycopg2-binary
+Requires-Dist: faststream[nats]
+Requires-Dist: async-timeout
 Provides-Extra: dev
 Requires-Dist: ruff; extra == "dev"
 Requires-Dist: black; extra == "dev"

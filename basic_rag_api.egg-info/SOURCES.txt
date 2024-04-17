@@ -1,3 +1,4 @@
+README.md
 pyproject.toml
 basic_rag_api.egg-info/PKG-INFO
 basic_rag_api.egg-info/SOURCES.txt

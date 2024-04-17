@@ -2,8 +2,10 @@
 name = "basic_rag_api"
 version = "0.0.1"
 requires-python = ">=3.11"
-dependencies = ["fastapi", "openai", "pydantic-settings", "uvicorn", "gunicorn", "qdrant-client[fastembed]", "sentry-sdk", "pugsql", "psycopg2-binary"]
-
+dependencies = ["fastapi", "openai", "pydantic-settings", "uvicorn", "gunicorn", "qdrant-client[fastembed]", "sentry-sdk", "pugsql", "psycopg2-binary", "faststream[nats]", "async-timeout"]
 
 [project.optional-dependencies]
 dev = ["ruff", "black"]
+
+[tool.setuptools]
+py-modules = []
